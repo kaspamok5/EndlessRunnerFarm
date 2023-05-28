@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CamMovement : MonoBehaviour
 {
-    public float speed = 5;
+    public Transform player;
 
     private void Update()
     {
-        transform.position += Vector3.forward * Time.deltaTime * speed;
+        transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z - 2.26f);
     }
 }
