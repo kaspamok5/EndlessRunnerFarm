@@ -12,13 +12,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float runningSpeed = 8;
     private Vector3 vel;
-    private bool isJumping = false;
+    public bool isJumping = false;
     public float jumpForce = 2;
+    private int currentLane = 0; // middle lane
+    private CharacterController characterController;
+    private bool moveFinish = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         vel = Vector3.forward * runningSpeed;
+        characterController = GetComponent<CharacterController>();
     }
 
 
@@ -27,14 +31,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && currentLane > -1 && moveFinish)
         {
             vel += Vector3.left * runningSpeed;
+            currentLane--;
+            moveFinish = false;
             StartCoroutine(StopTurning());
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && currentLane < 1 && moveFinish)
         {
             vel += Vector3.right * runningSpeed;
+            currentLane++;
+            moveFinish = false;
             StartCoroutine(StopTurning());
         }
         if (!Physics.Raycast(transform.position, Vector3.down, out var hit, 1.2f))
@@ -42,20 +50,21 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
             vel += Vector3.down * .2f;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping /*Physics.Raycast(transform.position, Vector3.down, 1.2f)*/)
         {
             isJumping = true;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            vel += Vector3.up * jumpForce;
         }
-        //transform.position = new Vector3( Mathf.Clamp(transform.position.x, -2.7f, 2.7f),transform.position.y,transform.position.z);
+        transform.position = new Vector3( Mathf.Clamp(transform.position.x, -2.7f, 2.7f),transform.position.y,transform.position.z);
         rb.velocity = vel;
     }
 
     IEnumerator StopTurning()
     {
-        yield return new WaitForSeconds((runningSpeed / 2.7f) - 2.7f);
+        yield return new WaitForSeconds(((runningSpeed / 2.7f) - 2.7f) - 0.01f);
         print("done");
         vel = Vector3.forward * runningSpeed;
+        moveFinish = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -67,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+            vel.y = 0;
         }
     }
 }
