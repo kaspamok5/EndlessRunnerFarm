@@ -17,11 +17,13 @@ public class PlayerMovement : MonoBehaviour
     private int currentLane = 0; // middle lane
     private CharacterController characterController;
     private bool moveFinish = true;
+    public bool startedRunning = false;
+    public bool hit = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        StartCoroutine(Difficulty()) ;
         characterController = GetComponent<CharacterController>();
     }
 
@@ -30,6 +32,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!startedRunning)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                startedRunning = true;
+            }
+            return;
+        }
+
         vel.z = runningSpeed;
 
         if (Input.GetKey(KeyCode.A))
@@ -55,41 +66,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = vel;
 
-
-
-        ////transform.position = Vector3.forward * runningSpeed * Time.deltaTime;
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    rb.AddForce(Vector3.left * runningSpeed);
-        //    //transform.DOMoveZ(-2.7f, .5f);
-        //    //currentLane--;
-        //    //moveFinish = false;
-        //    //StartCoroutine(StopTurning());
-        //}
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    rb.AddForce(Vector3.right * runningSpeed);
-        //    //transform.DOMoveZ(2.7f, .5f);
-        //    //currentLane++;
-        //    //moveFinish = false;
-        //    //StartCoroutine(StopTurning());
-        //}
-        //if (!Physics.Raycast(transform.position, Vector3.down, 1.2f))
-        //{
-        //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1.2f, Color.yellow);
-        //    vel += Vector3.down * .2f;
-        //}
-        ////if (Physics.Raycast(transform.position, Vector3.down, out var hit, 1.2f) && hit.Compare)
-        ////{
-        ////    rb.MoveRotation(Quaternion.Euler(0f, 0f, Vector2.Angle(Vector2.up, hit.normal)));
-        ////}
-        //if (Input.GetKeyDown(KeyCode.Space) && !isJumping /*Physics.Raycast(transform.position, Vector3.down, 1.2f)*/)
-        //{
-        //    isJumping = true;
-        //    vel += Vector3.up * jumpForce;
-        //}
-        //transform.position = new Vector3( Mathf.Clamp(transform.position.x, -2.7f, 2.7f),transform.position.y,transform.position.z);
-        //rb.velocity = vel;
     }
 
     IEnumerator StopTurning()
@@ -100,16 +76,36 @@ public class PlayerMovement : MonoBehaviour
         moveFinish = true;
     }
 
+    IEnumerator Difficulty()
+    {
+        yield return new WaitForSeconds(.5f);
+        runningSpeed += .1f;
+        StartCoroutine(Difficulty());
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            rb.velocity = Vector3.zero;
+            hit = true;
+            startedRunning = false;
+            rb.velocity = new Vector3(0, 5, -4);
+            StartCoroutine(StopVelocity());
+            transform.DORotate(new Vector3(0, 90, 90), 1);
+
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
             vel.y = 0;
         }
+    }
+
+    IEnumerator StopVelocity()
+    {
+        yield return new WaitForSeconds(1f);
+        rb.velocity = Vector3.zero;
+        StartCoroutine(StopVelocity());
     }
 }

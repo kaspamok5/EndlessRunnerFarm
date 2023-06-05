@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameFlow : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameFlow : MonoBehaviour
     private List<GameObject> tiles = new List<GameObject>();
     public GameObject[] obstacles;
     private float[] availableX = new float[] { -2.7f,0f,2.7f };
+    public GameObject coin;
 
     void Start()
     {
@@ -26,8 +28,8 @@ public class GameFlow : MonoBehaviour
         //tiles.Add(Instantiate(tile1Obj, Vector3.forward * 18, tile1Obj.rotation));
         //tiles.Add(Instantiate(tile1Obj, Vector3.forward * 27, tile1Obj.rotation));
         StartCoroutine(SpawnTile());
-        StartCoroutine(DestroyLastTile());
         StartCoroutine(SpawnObstacle());
+        StartCoroutine(SpawnCoin());
 
     }
 
@@ -47,7 +49,7 @@ public class GameFlow : MonoBehaviour
     IEnumerator SpawnTile()
     {
         //tiles.ForEach(tile => { print(tile); });
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.45f);
         tiles.Add(Instantiate(tile1Obj, nextTileSpawn, tile1Obj.transform.rotation));
         
         nextTileSpawn.z += 9;
@@ -66,10 +68,17 @@ public class GameFlow : MonoBehaviour
     {
         // x == -2.7 arba 0 arba 2.7
         // z == rand, bet po nextTileSpawn
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.4f);
         var gameObject = obstacles[Random.Range(0, obstacles.Length)];
         float zCord = nextTileSpawn.z;
         Instantiate(gameObject, new Vector3(availableX[Random.Range(0,availableX.Length)], 0f, (int)Random.Range(zCord, zCord + 9)), gameObject.transform.rotation);
         StartCoroutine(SpawnObstacle());
+    }
+
+    IEnumerator SpawnCoin()
+    {
+        yield return new WaitForSeconds(.1f);
+        Instantiate(coin, new Vector3(availableX[Random.Range(0, availableX.Length)], .5f, (int)Random.Range(nextTileSpawn.z, nextTileSpawn.z + 9)), gameObject.transform.rotation);
+        StartCoroutine (SpawnCoin());
     }
 }
