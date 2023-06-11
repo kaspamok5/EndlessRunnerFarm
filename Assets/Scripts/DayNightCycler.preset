@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DayNightCycler
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 49e6a6f5ca6eec44b805611a71114567, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key0.r
+    value: 0.96351963
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key0.g
+    value: 0.9716981
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key0.b
+    value: 0.50112724
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key0.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key1.r
+    value: 0.048689842
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key1.g
+    value: 0.7011087
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key1.b
+    value: 0.92033124
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key1.a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key2.r
+    value: 0.011764706
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key2.g
+    value: 0.6901961
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key2.b
+    value: 0.9372549
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key2.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key3.r
+    value: 0.8207547
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key3.g
+    value: 0.35359553
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key3.b
+    value: 0.46251836
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key3.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key4.r
+    value: 0.1254902
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key4.g
+    value: 0.10196079
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key4.b
+    value: 0.32941177
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key4.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key5.r
+    value: 0.12549019
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key5.g
+    value: 0.10196081
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key5.b
+    value: 0.32941177
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key5.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key6.r
+    value: 0.96470594
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key6.g
+    value: 0.9725491
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key6.b
+    value: 0.5019608
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key6.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key7.r
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key7.g
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key7.b
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.key7.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime0
+    value: 1349
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime1
+    value: 10794
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime2
+    value: 28142
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime3
+    value: 31804
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime4
+    value: 34695
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime5
+    value: 62451
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime6
+    value: 64379
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.ctime7
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime0
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime1
+    value: 65535
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime2
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime3
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime4
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime5
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime6
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.atime7
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.m_Mode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.m_NumColorKeys
+    value: 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gradient.m_NumAlphaKeys
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: dayLength
+    value: 1000
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentTime
+    value: 194.1
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

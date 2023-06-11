@@ -14,9 +14,13 @@ public class GameFlow : MonoBehaviour
     private float[] availableX = new float[] { -2.7f,0f,2.7f };
     public GameObject coin;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
     void Start()
     {
-
+        
         nextTileSpawn.z = 36;
         for (int i = 0; i < 4; i++)
         {
@@ -78,7 +82,9 @@ public class GameFlow : MonoBehaviour
     IEnumerator SpawnCoin()
     {
         yield return new WaitForSeconds(.1f);
-        Instantiate(coin, new Vector3(availableX[Random.Range(0, availableX.Length)], .5f, (int)Random.Range(nextTileSpawn.z, nextTileSpawn.z + 9)), gameObject.transform.rotation);
+        var coinX = availableX[Random.Range(0, availableX.Length)];
+        var coinZ = (int)Random.Range(nextTileSpawn.z, nextTileSpawn.z + 9);
+        Instantiate(coin, new Vector3(coinX, .5f, coinZ), gameObject.transform.rotation);
         StartCoroutine (SpawnCoin());
     }
 }

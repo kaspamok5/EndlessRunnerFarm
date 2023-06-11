@@ -19,11 +19,13 @@ public class PlayerMovement : MonoBehaviour
     private bool moveFinish = true;
     public bool startedRunning = false;
     public bool hit = false;
+    public GameObject startText;
+    public GameObject endText;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(Difficulty()) ;
+        StartCoroutine(Difficulty());
         characterController = GetComponent<CharacterController>();
     }
 
@@ -32,10 +34,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (transform.position.y < -1f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (hit)
+        {
+            endText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+
         if (!startedRunning)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                startText.SetActive(false);
                 startedRunning = true;
             }
             return;
@@ -46,16 +64,17 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             vel.x = -runningSpeed;
-        } else if (Input.GetKey(KeyCode.D))
+        }
+        else if (Input.GetKey(KeyCode.D))
         {
             vel.x = runningSpeed;
-        } else { vel.x = 0; }
+        }
+        else { vel.x = 0; }
 
         if (!Physics.Raycast(transform.position, Vector3.down, 1.2f))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1.2f, Color.yellow);
-            vel.y += -.2f;
-            print("test");
+            vel.y += -.4f;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping /*Physics.Raycast(transform.position, Vector3.down, 1.2f)*/)
@@ -66,14 +85,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = vel;
 
-    }
-
-    IEnumerator StopTurning()
-    {
-        yield return new WaitForSeconds(((runningSpeed / 2.7f) - 2.7f) - 0.01f);
-        print("done");
-        vel = Vector3.forward * runningSpeed;
-        moveFinish = true;
     }
 
     IEnumerator Difficulty()
